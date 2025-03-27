@@ -1,12 +1,9 @@
-from neuron import h, load_mechanisms, gui
-import os
+from neuron import h, gui
 from litus.bls import BilayerSonophore
 from litus.drives import *
 import matplotlib.pyplot as plt
 
 h.load_file('stdrun.hoc')
-os.chdir('../')
-load_mechanisms('./mechanisms')
 
 tbegin = 100
 tdur = 100
@@ -21,7 +18,6 @@ freq_tus = 500
 soma1 = h.Section(name='soma1')
 soma1.insert('hh')
 soma1.insert('dcdtplay')
-# soma2 = h.Section(name='soma2')
 ss = [soma1]
 
 def calculate_capacitance(t):
