@@ -218,14 +218,12 @@ class BilayerSonophore:
 
         if Z < self.Zqs:
             Pg = self.gasmol2Paqs(self.volume(Z))
-            Pv = self.PVleaflet(U, R) + self.PVfluid(U, R)
-            Ptot = self.Pmem(Z) + Pv
         else:
             Pg = self.gasmol2Pa(ng, self.volume(Z))
-            Pm = self.PMavgpred(Z)
-            Pac = drive.compute(t)
-            Pv = self.PVleaflet(U, R) + self.PVfluid(U, R)
-            Ptot = Pm + Pg - self.P0 + Pac + self.Pmem(Z) + Pv + self.Pelec(Z, Qm)
+        Pm = self.PMavgpred(Z)
+        Pac = drive.compute(t)
+        Pv = self.PVleaflet(U, R) + self.PVfluid(U, R)
+        Ptot = Pm + Pg - self.P0 + Pac + self.Pmem(Z) + Pv + self.Pelec(Z, Qm)
 
         dUdt = self.accP(Ptot, R) + self.accNL(U, R)
         dZdt = U
